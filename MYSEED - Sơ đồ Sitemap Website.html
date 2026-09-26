@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MYSEED — Sơ Đồ Sitemap Website</title>
+<style>
+:root{
+  --moss-900:#0F2118; --moss-800:#1B3A2B; --moss-600:#2C4A38; --moss-300:#5C7A67;
+  --moss-100:#E7ECE4; --moss-50:#F2F5EF;
+  --gold-700:#9C7A2E; --gold-600:#C9A24B; --gold-200:#EAD9AC; --gold-100:#F5EBD1;
+  --cream:#FAF7EF; --ink:#1F2A22; --ink-soft:#4B5A4F; --line:#C9A24B;
+  --card:#FFFFFF;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --cream:#101613; --ink:#EDEDE6; --ink-soft:#B7BDB3; --card:#182019;
+    --moss-100:#1E2B21; --moss-50:#182019; --gold-100:#2A2416; --gold-200:#3A3120;
+  }
+}
+:root[data-theme="dark"]{
+  --cream:#101613; --ink:#EDEDE6; --ink-soft:#B7BDB3; --card:#182019;
+  --moss-100:#1E2B21; --moss-50:#182019; --gold-100:#2A2416; --gold-200:#3A3120;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--cream); color:var(--ink);
+  font-family:'Georgia','Times New Roman',serif;
+  padding:calc(32px + env(safe-area-inset-top,0px)) 24px calc(40px + env(safe-area-inset-bottom,0px));
+}
+.page{max-width:1280px;margin:0 auto;}
+header{text-align:center;margin-bottom:28px;}
+h1{
+  font-size:clamp(22px,3.4vw,34px); font-weight:700; letter-spacing:.04em;
+  color:var(--moss-800); margin:0 0 8px;
+}
+:root[data-theme="dark"] h1, @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) h1{color:var(--gold-600);}}
+.sub{font-family:Arial,sans-serif; font-size:13px; color:var(--ink-soft); margin:0; letter-spacing:.02em;}
+
+.root-wrap{display:flex; justify-content:center; margin:22px 0 0;}
+.root-node{
+  background:var(--moss-800); color:#fff; font-family:Arial,sans-serif;
+  font-weight:700; font-size:16px; letter-spacing:.06em;
+  padding:12px 34px; border-radius:8px; border:1px solid var(--gold-600);
+}
+.stem{width:1px; height:20px; background:var(--gold-600); margin:0 auto;}
+.branch-row{
+  display:flex; justify-content:center; border-top:1px solid var(--gold-600);
+  padding-top:20px; position:relative; flex-wrap:wrap; gap:0;
+}
+.branch-stub{display:flex; flex-direction:column; align-items:center; padding:0 12px;}
+.branch-stub .drop{width:1px; height:20px; background:var(--gold-600); margin-top:-20px;}
+.branch-box{
+  font-family:Arial,sans-serif; font-weight:700; font-size:13px; color:var(--moss-800);
+  background:var(--card); border:1.5px solid var(--moss-800); border-radius:20px;
+  padding:9px 18px; margin-top:6px; white-space:nowrap; text-align:center;
+}
+.branch-box.featured{border:2px solid var(--gold-600); color:var(--gold-700); box-shadow:0 0 0 3px var(--gold-100) inset;}
+:root[data-theme="dark"] .branch-box, @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .branch-box{color:var(--gold-600);}}
+
+.grid{
+  display:grid; grid-template-columns:1fr 1fr 1.6fr 1fr 1fr 1fr; gap:18px; margin-top:8px;
+}
+.col{border-top:3px solid var(--gold-600); padding-top:14px;}
+.col-title{
+  font-family:Arial,sans-serif; font-size:11px; font-weight:700; text-transform:uppercase;
+  letter-spacing:.08em; color:var(--moss-300); margin-bottom:10px;
+}
+.node{
+  background:var(--moss-100); border-radius:8px; padding:9px 12px; margin-bottom:8px;
+  font-family:Arial,sans-serif; font-size:13px; font-weight:700; color:var(--moss-800);
+}
+:root[data-theme="dark"] .node, @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .node{color:var(--gold-200);}}
+.node .desc{display:block; font-weight:400; font-size:11.5px; color:var(--ink-soft); margin-top:3px;}
+.sub-node{
+  margin:0 0 10px 10px; padding:8px 0 8px 12px; border-left:2px solid var(--gold-200);
+}
+.sub-node .label{font-family:Arial,sans-serif; font-size:12px; font-weight:700; color:var(--gold-700); margin-bottom:6px;}
+.tags{display:flex; flex-wrap:wrap; gap:5px; margin-bottom:8px;}
+.tag{
+  font-family:Arial,sans-serif; font-size:10.5px; background:var(--gold-100);
+  border:1px solid var(--gold-200); color:var(--gold-700); border-radius:20px; padding:3px 9px;
+}
+.flow{font-family:Arial,sans-serif; font-size:11.5px; color:var(--ink-soft); padding-left:2px; line-height:1.5;}
+.flow b{color:var(--moss-800);}
+
+.legend{
+  display:flex; justify-content:center; gap:26px; margin-top:36px; flex-wrap:wrap;
+  font-family:Arial,sans-serif; font-size:12px; color:var(--ink-soft);
+}
+.legend span{display:inline-flex; align-items:center; gap:7px;}
+.dot{width:13px; height:13px; border-radius:50%; display:inline-block;}
+.d1{background:var(--moss-800);} .d2{background:var(--moss-100); border:1px solid var(--moss-300);} .d3{background:var(--gold-600);}
+
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr 1fr;}
+  .branch-row{border-top:none;}
+}
+@media (max-width:560px){
+  .grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>MYSEED — Sơ Đồ Sitemap Website</h1>
+    <p class="sub">6 nhánh chính · Trang chủ = 7 dải nội dung · Vườn Ươm phân loại theo lĩnh vực &amp; khu vực</p>
+  </header>
+
+  <div class="root-wrap"><div class="root-node">MYSEED</div></div>
+  <div class="stem"></div>
+  <div class="branch-row">
+    <div class="branch-stub"><div class="drop"></div><div class="branch-box">Trang chủ</div></div>
+    <div class="branch-stub"><div class="drop"></div><div class="branch-box">Giới thiệu</div></div>
+    <div class="branch-stub"><div class="drop"></div><div class="branch-box featured">Vườn Ươm</div></div>
+    <div class="branch-stub"><div class="drop"></div><div class="branch-box">Gửi hạt giống</div></div>
+    <div class="branch-stub"><div class="drop"></div><div class="branch-box">Tin tức / Cẩm nang</div></div>
+    <div class="branch-stub"><div class="drop"></div><div class="branch-box">Liên hệ</div></div>
+  </div>
+
+  <div class="grid">
+
+    <div class="col">
+      <div class="col-title">Trang chủ</div>
+      <div class="node">D1 — Banner/Carousel<span class="desc">Giới thiệu MYSEED, câu chuyện Hạt Giống 001, kêu gọi gửi ý tưởng</span></div>
+      <div class="node">D2 — Giới thiệu ngắn<span class="desc">+ số liệu ấn tượng</span></div>
+      <div class="node">D3 — Cơ chế 5 bước<span class="desc">Gửi · Tìm thấy · Ươm · Nảy mầm · Bén rễ</span></div>
+      <div class="node">D4 — Hạt giống nổi bật<span class="desc">Case Đắk Nông</span></div>
+      <div class="node">D5 — Vườn Ươm preview<span class="desc">Lưới dự án mới nhất</span></div>
+      <div class="node">D6 — Đối tác / người đồng hành</div>
+      <div class="node">D7 — Chân trang + CTA<span class="desc">"Gửi hạt giống của bạn"</span></div>
+    </div>
+
+    <div class="col">
+      <div class="col-title">Giới thiệu</div>
+      <div class="node">Về chúng tôi</div>
+      <div class="sub-node">
+        <div class="tags"><span class="tag">Vai trò</span><span class="tag">Đội thực hiện</span></div>
+      </div>
+      <div class="node">Tầm nhìn – Sứ mệnh</div>
+      <div class="sub-node">
+        <div class="tags"><span class="tag">Tầm nhìn</span><span class="tag">Sứ mệnh</span></div>
+      </div>
+      <div class="node">Cơ chế vận hành chi tiết</div>
+      <div class="node">Liên kết SDGs<span class="desc">SDG 1, 8, 12, 15</span></div>
+    </div>
+
+    <div class="col">
+      <div class="col-title">Vườn Ươm ★ mục nổi bật</div>
+
+      <div class="node">Hạt Giống Bỏ Quên</div>
+      <div class="sub-node">
+        <div class="label">Lĩnh vực</div>
+        <div class="tags">
+          <span class="tag">Nông sản &amp; dược liệu bản địa</span>
+          <span class="tag">Thủ công &amp; làng nghề</span>
+          <span class="tag">Tái chế &amp; môi trường</span>
+          <span class="tag">Du lịch trải nghiệm bản địa</span>
+          <span class="tag">Công nghệ &amp; giáo dục cộng đồng</span>
+        </div>
+        <div class="label">Khu vực</div>
+        <div class="tags"><span class="tag">Miền Bắc</span><span class="tag">Miền Trung</span><span class="tag">Miền Nam</span></div>
+        <div class="flow">↳ <b>Trang chi tiết dự án</b> (mô tả, vấn đề, nút Đầu tư) → <b>Modal đầu tư dự án</b> (tư cách, chuyên môn, mời người tham gia, tạo nhóm chat)</div>
+      </div>
+
+      <div class="node">Hạt Giống Đang Ươm</div>
+      <div class="sub-node">
+        <div class="label">Lĩnh vực</div>
+        <div class="tags">
+          <span class="tag">Nông sản &amp; dược liệu bản địa</span>
+          <span class="tag">Thủ công &amp; làng nghề</span>
+          <span class="tag">Tái chế &amp; môi trường</span>
+          <span class="tag">Du lịch trải nghiệm bản địa</span>
+          <span class="tag">Công nghệ &amp; giáo dục cộng đồng</span>
+        </div>
+        <div class="label">Khu vực</div>
+        <div class="tags"><span class="tag">Miền Bắc</span><span class="tag">Miền Trung</span><span class="tag">Miền Nam</span></div>
+      </div>
+
+      <div class="node">Phát Triển Thành Cây</div>
+      <div class="sub-node">
+        <div class="label">Lĩnh vực</div>
+        <div class="tags">
+          <span class="tag">Nông sản &amp; dược liệu bản địa</span>
+          <span class="tag">Thủ công &amp; làng nghề</span>
+          <span class="tag">Tái chế &amp; môi trường</span>
+          <span class="tag">Du lịch trải nghiệm bản địa</span>
+          <span class="tag">Công nghệ &amp; giáo dục cộng đồng</span>
+        </div>
+        <div class="label">Khu vực</div>
+        <div class="tags"><span class="tag">Miền Bắc</span><span class="tag">Miền Trung</span><span class="tag">Miền Nam</span></div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="col-title">Gửi hạt giống</div>
+      <div class="node">Form gửi ý tưởng</div>
+      <div class="sub-node">
+        <div class="tags">
+          <span class="tag">Tên ý tưởng</span><span class="tag">Mô tả</span><span class="tag">Lý do bỏ dở</span>
+          <span class="tag">Giá trị bản địa sẵn có</span><span class="tag">Thông tin liên hệ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="col-title">Tin tức / Cẩm nang</div>
+      <div class="node">Case Study<span class="desc">Bài viết case Hạt Giống 001</span></div>
+      <div class="node">Tin tức nội bộ</div>
+      <div class="node">Sự kiện</div>
+    </div>
+
+    <div class="col">
+      <div class="col-title">Liên hệ</div>
+      <div class="node">Hotline</div>
+      <div class="node">Hỗ trợ trực tuyến</div>
+      <div class="node">Mạng xã hội</div>
+    </div>
+
+  </div>
+
+  <div class="legend">
+    <span><i class="dot d1"></i> Mục lớn — trang gốc / nhánh chính</span>
+    <span><i class="dot d2"></i> Thành phần — mục con cấp 1</span>
+    <span><i class="dot d3"></i> Mục con — phân loại / chi tiết</span>
+  </div>
+</div>
+</body>
+</html>

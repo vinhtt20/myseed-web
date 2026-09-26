@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+/*
+  MYSEED tokens. Palette family: "Forest" (moss + bone + amber), taken from the
+  brand sitemap (moss/gold) but moved off the default cream background.
+  Radius rule: interactive controls are full pill, media and panels 12px, inputs 10px.
+  Z-index scale: header 40, dialog 50.
+*/
+:root {
+  --bg: #f3f4f0;
+  --surface: #fbfbf8;
+  --surface-2: #e6ebe3;
+  --ink: #17211b;
+  --ink-soft: #4a574f;
+  --line: #d3d9d0;
+  --moss: #1f3d2d;
+  --moss-ink: #f3f4f0;
+  --moss-tint: #dde6db;
+  --amber: #8a6214;
+  --amber-tint: #f1e6c8;
+  --danger: #a3261b;
+  --focus: #1f6b47;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1511;
+    --surface: #151d18;
+    --surface-2: #1c2720;
+    --ink: #e8ece5;
+    --ink-soft: #a7b2aa;
+    --line: #2a372f;
+    --moss: #b7d3ae;
+    --moss-ink: #0f1511;
+    --moss-tint: #1f2e24;
+    --amber: #e2b85c;
+    --amber-tint: #2e2715;
+    --danger: #f19084;
+    --focus: #8fd0a8;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-moss: var(--moss);
+  --color-moss-ink: var(--moss-ink);
+  --color-moss-tint: var(--moss-tint);
+  --color-amber: var(--amber);
+  --color-amber-tint: var(--amber-tint);
+  --color-danger: var(--danger);
+  --color-focus: var(--focus);
+  --font-sans: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  /* Overrides the inline initial state Motion writes into server HTML. */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--amber-tint);
+  color: var(--ink);
+}
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  border-radius: 9999px;
+  padding: 0.75rem 1.25rem;
+  font-size: 15px;
+  font-weight: 600;
+  transition: transform 200ms, background-color 200ms, color 200ms, border-color 200ms;
+  &:active {
+    transform: translateY(1px);
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+@utility btn-primary {
+  @apply btn bg-moss text-moss-ink hover:bg-ink hover:text-bg;
+}
+
+@utility btn-ghost {
+  @apply btn border border-line text-ink hover:border-ink;
+}
+
+@utility input {
+  @apply w-full rounded-[10px] border border-line bg-surface px-3.5 py-2.5 text-[15px] text-ink placeholder:text-ink-soft transition-colors focus:border-focus focus:outline-none focus:ring-2 focus:ring-focus/30 aria-[invalid=true]:border-danger;
+}
+
+@utility label {
+  @apply text-sm font-semibold text-ink;
+}
+
+@utility field-error {
+  @apply text-sm text-danger;
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-[1240px] px-4 sm:px-6 lg:px-8;
+}
